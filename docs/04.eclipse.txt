@@ -1,0 +1,70 @@
+- include Java Reflection Exercise
+
+- Overview
+    - Project space
+    - Workspace
+    - Views
+    - Perspective
+
+Features
+- Project
+    - Creating new Java project(ctrl + n)
+    - Project properties(Alt + Enter)
+    - Build path
+        - Add libs
+        - Add jars
+    - Add lib source
+
+- Editing
+    - Autocomplete(Ctrl + Space)
+    - Organize imports(Ctrl + Shift + o)
+    - Template
+    - Quickfix(Ctrl + 1)
+    - Docs
+        - Comment(Ctrl + / OR Ctrl + Shift + /)
+        - Java doc(/**)
+        - TODO (//TODO: )
+    - Rename(F2)
+    - Refactor(Alt + Shift + r)
+    - Find and replace(Ctrl + f)
+    - Extract to local variable(Alt + Shift + l)
+    - Extract to a method(Alt + Shift + m)
+    - Local history
+    - Surround with try catch(Alt + Shift + z, r)
+
+- Navigation
+    - File links(Ctrl + left click OR F3)
+    - Open Java file(Ctrl + Shift + t)
+    - Open Resource(Ctrl + Shift + r)
+    - File search(Ctrl + h)
+    - Go back & forth of mouse click paths(Alt + Right AND Alt + Left)
+    - Call hierarchy(ctrl + Alt + h)
+    - References(Ctrl + Shift + g)
+    - Next / prev error(Ctrl + . AND Ctrl + ,)
+
+- Run
+    - Run as(Alt + Shift + x, j)
+    - Run recently ran(Ctrl + F11)
+    - run config
+
+- Debug
+    - debug config
+    - Debug as(Alt + Shift + d, j)
+    - Debug recently ran(F11)
+    - breakpoint
+        - with / without condition
+        - skip all breakpoints
+        - remove all breakpoints
+        - debug
+            - next line(F6)
+            - next breakpoint(F8)
+            - into the next statement(F5)
+    - drop to the frame
+    - Variables
+    - Expressions
+    - change code on debug
+        - build project automatically
+
+- Tools
+    - Quick access(Ctrl + 3)
+    - find / change shortcuts 

@@ -1,0 +1,25 @@
+1. Write an example that counts the number of times a particular character, such as e, appears in a file. 
+   The character can be specified at the command line. You can use xanadu.txt as the input file.
+   Refer to the input file  here: \\nas\distribution\ref\java\tutorial\essential\io\examples\xanadu.txt
+2. Read a any text file using BufferedReader and print the content of the file
+3. Write some String content to a file using appropriate OutputStream
+4. Write some String content to console using appropriate Writer
+5. Read a file using java.io.File
+6. Read a file using java.nio.Files using Paths
+7. Reading a CSV file using java.nio.Files API as List string with each row in CSV as a String
+8. Given a path, check if path is file or directory
+9. Write a program to convert InputStream to String and vice versa
+10. Write a program to convert InputStream  Object to inputStream and vice versa    
+11. Write a program to get the number of files and number of directories in a given directory
+12. Write a program get the permissions allowed for a file
+13. Write a program get the file names of all file with specific extension in a directory
+14. Write a program to check if two paths are same.
+
+==============
+Tutorial links
+==============
+IO/NIO
+    - file://nas/Distribution/ref/java/tutorial/essential/io/index.html
+    - after reading the above concepts, for class level details
+        - http://tutorials.jenkov.com/java-io/index.html
+        - http://tutorials.jenkov.com/java-nio/index.html

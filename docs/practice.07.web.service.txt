@@ -1,0 +1,34 @@
+Environment Setup:
+==================
+- Create an eclipse java project to define a servlet, and files required for a web-app
+   -deploy the required files as a WAR in the web server and test
+- Update the eclipse build path to compile directly to required folder in the web-app deployed in web server's
+   -just restarting the server will provide the latest implementation
+- Configure and use remote debugging, to debug Servlets/Service methods deployed and running in the web-server process from eclipse process
+
+Duplicate and modify the JDBC service exercise to perform the following: (service.jdbc => web.services, change package accordingly)
+- Expose the services as web services using servlets for each of the entities - Employee and Address
+- Use request's HTTP method to identify the service operation to be done
+- Use JSON serialization/de-serialization to get and send data from/to HTTPClient
+     -Respective sample will be available in the samples repo
+- Servlets will act as the transaction boundary
+- Use filter mechanism to secure service operations
+     -Create a AuthService to login, logout an Person
+     -None of the service, except AuthService.login(), can be done without logging in first
+     -Add a isAdmin field in Person
+     -All service operations can be performed by a 'admin' Person
+     -A non-admin Person cannot create or delete any entity
+     -Logged in Person instance will be managed in HTTPSession, which has to be cleared/reset on AuthService.logout()
+     -Do NOT pass/access any of the HTTP* class instances in Service or layers below
+- Use filter mechanism to convert all exceptions as AppException and translate as response in a standard way
+     -modify AppException to allow multiple error codes
+- Update all testcases, including negative test cases, using a HTTPClient to invoke the web services, instead of the local method call
+- configure eclipse build path to output files, including config XMLs, for easily doing the above
+
+Stretch goals: (try these only if you've finished all above)
+============================================================
+-perform all services' operations using a single servlet
+    -would need extra data from request to identify entity
+    -continue to use HTTP method to identify the operation
+-Use the Jetty Server's JNDI mechanism to manage connection DataSource
+    -Use Servlet Context to configure and obtain the JNDI within the servlet

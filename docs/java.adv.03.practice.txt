@@ -1,0 +1,73 @@
+Properties
+==========
+1. Get and print a configurable property based on following priority:
+  - args passed for java cmd
+  - if not available as cmd args, try to get from System env variables
+  - if not available from Sys Env, try to get from a customized .properties file (D:\temp\customize.properties)
+  - if not available in customized props files, get from a default .properties file (\\nas\Distribution\training\temp\default.properties)
+  - if not available in default props, load from a hard-coded default constant
+    Try to use Properties.setParent() hierarchy mechanism to set out the priorities
+2. Load and print localized greetings text based on a given Locale (in_en and in_ta)
+
+DateTime
+========
+1. Get current time using possible APIs
+2. Formatting current date to following formats: 2001-07-04T12:08:56.235-0700 and 2001.07.04 at 12:08:56 PDT
+3. Print the components of the current date
+4. For a given year, print the length of each month within that year.
+5. For a given month of the current year, lists all of the Mondays in that month with date in mm-dd-yyyy format.
+6. ISO standard - Format and print current date into ISO date format
+7. Date difference - Find the difference between two dates.
+8. Epoch 
+    - Print the Epoch time
+9. TimeStamp 
+    - Create and print the time stamp for current date.
+10. Timer 
+    - Print the time taken for the current method execution using Timer API 
+11. TimerTask 
+    - Print a message every 10 seconds using TimerTask API with time, like "6:11 AM Monday, 10 September 2018: Hi I am auto runner"
+12. Print the current time in milliseconds and nanoseconds.
+
+java.util
+=========
+1. Comparable vs Comparator 
+    - Compare Person objects using Comparable and comparator
+2. Convert a collection to array and vice versa.
+3. Base64
+    - Encoding and decoding a String. Encode a password string and decode it using Base64.
+4. UUID
+    - Generate and print a unique id with alpha-numerical characters
+5. Random
+    - Generate and print a random number every time
+6. Implement a CSV parser using StreamTokenizer API
+    - Read a CSV file
+    - Parse the CSV file using StreamTokenizer API
+    - Set the values in the Person object using lambda
+    - Create a list out of the each CSV records
+    - Use lambda to prepare the Persons list
+7. Scanner
+    - Get input from the console using Scanner API
+8. Objects
+    - Check if a object is non-null
+9. Optional
+    - demonstrate how optional avoids null pointer exception
+
+Math
+====
+1. Rounding off
+    - Write a Java program to round a BigDecimal number to specified decimals.
+    - Print the following values of a particular BigDecimal number:
+        - absolute value
+        - ceiling
+        - floor
+        - rint
+        - max
+        - min
+Text
+====
+1. Formatting text, date and String
+    - Format the number, date and String using java.text.MessageFormat API using different locale.
+
+Annotations (Try only if everything else is done and you time to explore)
+=========================================================================
+1. Use annotation to set a unique id to the Employee's id object by default.

@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0076)https://docs.oracle.com/cd/E13222_01/wls/docs92/webapp/configureservlet.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="gr__docs_oracle_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- LOCALIZATION RELATED INFORMATION -->
+<meta name="LOC_PROJ_ID" content="WLPF8.1">
+<meta name="LOC_OWNER" content="BEAJ">
+<meta name="LOC_STATUS" content="READY!">
+<meta name="LOC_COMMENT" content="LOC_COMMENT">
+<meta name="LOC_US_REV" content="13">
+<meta name="LOC_US_CHANGE" content="1174879">
+<meta name="LOC_US_SRCFILE" content="//depot/docs/docs92/fm/webapp/configureservlet.fm">
+<!-- LOCALIZATION RELATED INFORMATION -->
+
+    
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="GENERATOR" content="Quadralay WebWorks AutoMap 2003 Platinum Edition for FrameMaker 8.6.6577.0">
+    <meta name="TEMPLATEBASE" content="BEA_WFP_Template_V1.04">
+    <meta name="LASTUPDATED" content="12/08/08 03:38:24">
+    <link rel="StyleSheet" href="./Creating and Configuring Servlets_files/edocs.css" type="text/css" media="all">
+
+<title>Creating and Configuring Servlets</title>
+
+<!-- BEA scripts begin -->
+
+<script language="Javascript" src="./Creating and Configuring Servlets_files/banner.js.download" type="text/javascript"></script>
+<!-- This script outputs the banner required for edocs documentation. -->
+
+<script language="Javascript" src="./Creating and Configuring Servlets_files/floatwin.js.download" type="text/javascript"></script>
+<!-- This script opens a new small floating window and puts TOC<i>&lt;name&gt;</i>.html and IX<i>&lt;name&gt;</i>.html files in it and sets a generic popup window code to enable the display of some viewlets in the WebLogic Platform Tour. -->
+
+<script language="Javascript1.1" src="./Creating and Configuring Servlets_files/footer.js.download" type="text/javascript"></script>
+<!-- This script outputs the footer with the correct copyright date and link to copyright page.-->
+
+<script language="Javascript1.1" src="./Creating and Configuring Servlets_files/googlesearch4.js.download" type="text/javascript"></script>
+<!-- This script outputs the google search form. -->
+
+<script language="Javascript1.1" src="./Creating and Configuring Servlets_files/note.js.download" type="text/javascript"></script>
+<!-- This script outputs a note such as a BETA note. -->
+
+<script language="JavaScript1.1" src="./Creating and Configuring Servlets_files/search.js.download" type="text/javascript"></script>
+<!-- This script is not for online documents. It is only used by the QuestAgent Java Applet for CD search indexes. -->
+
+<!-- BEA scripts end -->
+
+  <script>window.ohcglobal || document.write('<script src="/en/dcommon/js/global.js">\x3C/script>')</script><script src="./Creating and Configuring Servlets_files/global.js.download"></script><script type="text/javascript" src="./Creating and Configuring Servlets_files/ora_docs.js.download"></script></head>
+
+  <body data-gr-c-s-loaded="true">
+
+
+<script language="Javascript1.1" type="text/javascript">
+GoogleURL();
+</script><form name="gs" method="get" action="http://search.oracle.com/search"><noscript>This script outputs the google search URL required for search on edocs documentation.</noscript>
+
+<script language="Javascript1.1" type="text/javascript">
+Banner();
+</script><div id="header">	<div id="floater">		<div class="buttons"><a href="https://docs.oracle.com/cd/E13222_01/wls/docs92/webapp/configureservlet.html#skipnav" title="Jump to Content"></a>		<a href="http://www.oracle.com/technology/software/index.html">Downloads</a>		&nbsp;|&nbsp;		<a href="http://www.oracle.com/technology/documentation/index.html">Product Documentation</a>		&nbsp;|&nbsp;		<a href="http://www.oracle.com/support/index.html">Support</a>		</div>		<div class="searchbox">			    	    <script language="JavaScript" type="text/javascript">printWelcome()</script>			    <input type="hidden" name="default" value="true">			    <input class="textA" id="Search" value=" secure search" size="30" name="keyword" onclick="if(this.value==&#39; secure search&#39;)this.value=&#39;&#39;;" onkeydown="javascript:isUserInput=true;">			    <input type="hidden" name="start" value="1">			    &nbsp;&nbsp;			    <input type="hidden" name="nodeid" value="">			    <input type="hidden" name="fid" value="">			    <input type="hidden" name="showSimilarDoc" value="true">			    <select onkeydown="javascript:callSubmit(document.searchForm.keyword.value,searchForm,event.keyCode)" name="group" onchange="javascript: setFormValues(document.searchForm,document.searchForm.group.value)" class="textA" size="1">			    <option value="All">All</option>			    <option value="Blogs">Blogs</option>			    <option value="Oracle.com">Corporate Site</option>			    <option value="CRM On Demand">CRM On Demand</option>			    <option value="Discussion Forums">Discussion Forums</option>			    <option value="Documentation" selected="">Documentation</option>			    <option value="Education">Education</option>			    <option value="Oracle PartnerNetwork (Public)">PartnerNetwork (Public Only)</option>			    <option value="Oracle Technology Network">Technology Network</option>			    <option value="Video and Multimedia">Video and Multimedia</option>			    </select>			    &nbsp;			<a onclick="javascript: return isNotNull(document.searchForm.keyword.value)" href="javascript:document.searchForm.submit()"> <img src="./Creating and Configuring Servlets_files/20px_search.jpg" width="21" alt="" height="20" vspace="1" hspace="1" border="0" title="Search"></a>				</div>	</div>	<div id="headergraphic"><a href="http://www.oracle.com/technology/documentation/index.html"><img src="./Creating and Configuring Servlets_files/oracle_bea.gif" alt="Oracle BEA Logo" border="0" width="248" height="41" style="margin:10px 0px 0px 20px;"></a>	</div>	<div class="blueline"><img src="./Creating and Configuring Servlets_files/_.gif" width="1" height="1" alt=""></div>	<div id="graybar">		<div class="topnav">		<a href="http://www.oracle.com/technology/index.html">OTN Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<a href="http://forums.oracle.com/">Oracle Forums</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<a href="http://www.oracle.com/technology/community/index.html">Community</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		</div>	</div>	<div class="twodots"><img src="./Creating and Configuring Servlets_files/_.gif" width="1" height="1" alt=""></div></div></form><noscript>This script outputs the banner required for edocs documentation.</noscript>
+
+<script language="Javascript1.1" type="text/javascript">
+GoogleSearchCollection();
+</script><input type="hidden" name="client" value="developer"><input type="hidden" name="filter" value="p"><input type="hidden" name="ie" value="latin1"><input type="hidden" name="lr" value="lang_en"><input type="hidden" name="numgm" value="5"><input type="hidden" name="oe" value="latin1"><input type="hidden" name="output" value="xml_no_dtd"><input type="hidden" name="proxystylesheet" value="developer"><input type="hidden" name="site" value="edocs_92core"><input type="hidden" name="source" value="edocs"><noscript>This script outputs the google search parameters required for search on edocs documentation.</noscript>
+
+<!-- page title -->
+<h1 class="booktitle">Developing Web 
+Applications, Servlets, 
+and JSPs for WebLogic 
+Server
+</h1>
+<!-- page title end -->
+
+    <table id="SummaryNotReq1" width="100%" border="0" align="left" cellpadding="2%" cellspacing="0">
+<hr noshade="noshade">
+<h2 class="pHeading1"><a name="wp120130"> </a>
+Configuring Servlets<a name="configuring-servlets"></a>
+</h2><p class="pBody"><a name="wp148783"> </a>
+You define servlets as a part of a Web application in several entries in the J2EE standard Web Application deployment descriptor, web.xml. The <code class="cCode">web.xml</code> file is located in the <code class="cCode">WEB-INF</code> directory of your Web application. 
+</p>
+<p class="pBody"><a name="wp158027"> </a>
+The first entry, under the root <code class="cCode">servlet</code> element in web.xml, defines a name for the servlet and specifies the compiled class that executes the servlet. (Or, instead of specifying a servlet class, you can specify a JSP.) The <code class="cCode">servlet</code> element also contains definitions for initialization attributes and security roles for the servlet. 
+</p>
+<p class="pBody"><a name="wp158057"> </a>
+The second entry in web.xml, under the <code class="cCode">servlet-mapping</code> element, defines the URL pattern that calls this servlet. 
+</p>
+<h3 class="pHeading2"><a name="wp148787"> </a>
+Servlet Mapping<a name="servlet-mapping"></a>
+</h3>
+<p class="pBody"><a name="wp148788"> </a>
+Servlet mapping controls how you access a servlet. The following examples demonstrate how you can use servlet mapping in your Web application. In the examples, a set of servlet configurations and mappings (from the <code class="cCode">web.xml</code> deployment descriptor) is followed by a table showing the URLs used to invoke these servlets.
+</p>
+
+<div class="pCodeTitle"><a name="wp148793"> </a>
+Listing&nbsp;4-1	   Servlet Mapping Example
+</div> <a name="wp148794"> </a><div class="pPreformatted"><pre>&lt;servlet&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;<span style="font-weight: bold">watermelon</span>&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;servlet-class&gt;myservlets.watermelon&lt;/servlet-class&gt;<br>&lt;/servlet&gt;</pre></div><a name="wp148795"> </a><div class="pPreformatted"><pre>&lt;servlet&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;<span style="font-weight: bold">garden</span>&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;servlet-class&gt;myservlets.garden&lt;/servlet-class&gt;<br>&lt;/servlet&gt;</pre></div><a name="wp148796"> </a><div class="pPreformatted"><pre>&lt;servlet&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;<span style="font-weight: bold">list</span>&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;servlet-class&gt;myservlets.list&lt;/servlet-class&gt;<br>&lt;/servlet&gt;</pre></div><a name="wp148797"> </a><div class="pPreformatted"><pre>&lt;servlet&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;<span style="font-weight: bold">kiwi</span>&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;servlet-class&gt;myservlets.kiwi&lt;/servlet-class&gt;<br>&lt;/servlet&gt;</pre></div><a name="wp148798"> </a><div class="pPreformatted"><pre>&lt;servlet-mapping&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;<span style="font-weight: bold">watermelon</span>&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;url-pattern&gt;/fruit/summer/*&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;</pre></div><a name="wp148799"> </a><div class="pPreformatted"><pre>&lt;servlet-mapping&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;<span style="font-weight: bold">garden</span>&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;url-pattern&gt;/seeds/*&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;</pre></div><a name="wp148800"> </a><div class="pPreformatted"><pre>&lt;servlet-mapping&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;<span style="font-weight: bold">list</span>&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;url-pattern&gt;/seedlist&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;</pre></div><a name="wp148801"> </a><div class="pPreformatted"><pre>&lt;servlet-mapping&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;<span style="font-weight: bold">kiwi</span>&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;url-pattern&gt;*.abc&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;</pre></div><p class="pBodyRelative"><a name="wp156786"> </a>
+</p>
+<div align="left">
+<table class="table" cellpadding="3" cellspacing="0" id="wp156745table156742"><caption><a name="wp156745"> </a>
+Table 4-1  url-patterns and Servlet Invocation
+
+</caption>
+
+  <tbody><tr bgcolor="#CCCCCC" align="center" valign="top">    <th scope="col"><div class="pCellHeading"><a name="wp156749"> </a>
+URL
+</div>
+</th>
+    <th scope="col"><div class="pCellHeading"><a name="wp156751"> </a>
+Servlet<br>Invoked
+</div>
+</th>
+</tr>
+  <tr align="left" valign="top">    <td class="table" scope="row"><div class="pCellBody"><a name="wp156753"> </a>
+<code class="cCode">http://host:port/mywebapp/fruit/summer/index.html</code>
+</div>
+</td>
+    <td class="table" scope="row"><div class="pCellBody"><a name="wp156755"> </a>
+<code class="cCode">watermelon</code>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td class="table" scope="row"><div class="pCellBody"><a name="wp156757"> </a>
+<code class="cCode">http://host:port/mywebapp/fruit/summer/index.abc</code>
+</div>
+</td>
+    <td class="table" scope="row"><div class="pCellBody"><a name="wp156759"> </a>
+<code class="cCode">watermelon</code>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td class="table" scope="row"><div class="pCellBody"><a name="wp156761"> </a>
+<code class="cCode">http://host:port/mywebapp/seedlist</code>
+</div>
+</td>
+    <td class="table" scope="row"><div class="pCellBody"><a name="wp156763"> </a>
+<code class="cCode">list</code>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td class="table" scope="row"><div class="pCellBody"><a name="wp156765"> </a>
+<code class="cCode">http://host:port/mywebapp/seedlist/index.html</code>
+</div>
+</td>
+    <td class="table" scope="row"><div class="pCellBody"><a name="wp156767"> </a>
+The default servlet, if configured, or an HTTP 404 File Not Found error message.
+</div>
+<div class="pCellBody"><a name="wp156768"> </a>
+If the mapping for the <code class="cCode">list</code> servlet had been <code class="cCode">/seedlist*</code>, the <code class="cCode">list</code> servlet would be invoked.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td class="table" scope="row"><div class="pCellBody"><a name="wp156770"> </a>
+<code class="cCode">http://host:port/mywebapp/seedlist/pear.abc</code>
+</div>
+</td>
+    <td class="table" scope="row"><div class="pCellBody"><a name="wp156772"> </a>
+<code class="cCode">kiwi</code>
+</div>
+<div class="pCellBody"><a name="wp156773"> </a>
+If the mapping for the <code class="cCode">list</code> servlet had been <code class="cCode">/seedlist*</code>, the <code class="cCode">list</code> servlet would be invoked.
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td class="table" scope="row"><div class="pCellBody"><a name="wp156775"> </a>
+<code class="cCode">http://host:port/mywebapp/seeds</code>
+</div>
+</td>
+    <td class="table" scope="row"><div class="pCellBody"><a name="wp156777"> </a>
+<code class="cCode">garden</code>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td class="table" scope="row"><div class="pCellBody"><a name="wp156779"> </a>
+<code class="cCode">http://host:port/mywebapp/seeds/index.html</code>
+</div>
+</td>
+    <td class="table" scope="row"><div class="pCellBody"><a name="wp156781"> </a>
+<code class="cCode">garden</code>
+</div>
+</td>
+</tr>
+  <tr align="left" valign="top">    <td class="table" scope="row"><div class="pCellBody"><a name="wp156783"> </a>
+<code class="cCode">http://host:port/mywebapp/index.abc</code>
+</div>
+</td>
+    <td class="table" scope="row"><div class="pCellBody"><a name="wp156785"> </a>
+<code class="cCode">kiwi</code>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<p class="pBodyRelative">
+
+</p>
+<p class="pBody"><a name="wp156787"> </a>
+ServletServlet can be used to create a default mappings for servlets. For example, to create a default mapping to map all servlets to /myservlet/*, so the servlets can be called using http://host:port/web-app-name/myservlet/com/foo/FooServlet, add the following to your web.xml file. (The <code class="cCode">web.xml</code> file is located in the <code class="cCode">WEB-INF</code> directory of your Web application.)
+</p>
+<a name="wp155674"> </a><div class="pPreformatted"><pre>&lt;servlet&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;ServletServlet&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;servlet-class&gt;weblogic.servlet.ServletServlet&lt;/servlet-class&gt;<br>&lt;/servlet&gt;</pre></div><p class="pBody"><a name="wp155784"> </a>
+&lt;servlet-mapping&gt; 
+</p>
+<p class="pBody"><a name="wp155785"> </a>
+		&lt;servlet-name&gt;ServletServlet&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&lt;url-pattern&gt;/myservlet/*&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;
+</p>
+<p>&nbsp;</p>
+<hr noshade="noshade">
+<h2 class="pHeading1"><a name="wp157934"> </a>
+Setting Up a Default Servlet<a name="default-servlet"></a>
+</h2><p class="pBody"><a name="wp157936"> </a>
+Each Web application has a <span style="font-style: italic">default servlet</span>. This default servlet can be a servlet that you specify, or, if you do not specify a default servlet, WebLogic Server uses an internal servlet called the <code class="cCode">FileServlet</code> as the default servlet.
+</p>
+<p class="pBody"><a name="wp157937"> </a>
+You can register any servlet as the default servlet. Writing your own default servlet allows you to use your own logic to decide how to handle a request that falls back to the default servlet.
+</p>
+<p class="pBody"><a name="wp157938"> </a>
+Setting up a default servlet replaces the <code class="cCode">FileServlet</code> and should be done carefully because the <code class="cCode">FileServlet</code> is used to serve most files, such as text files, HTML file, image files, and more. If you expect your default servlet to serve such files, you will need to write that functionality into your default servlet.
+</p>
+<p class="pBody"><a name="wp157939"> </a>
+To set up a user-defined default servlet:
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+Configuring How a Client Accesses a Web Application</span></a>Add a servlet-mapping with url-pattern = “/” as follows:</li>
+<a name="wp158183"> </a><div class="pPreformattedRelative"><pre>&lt;servlet-mapping&gt; </pre></div><a name="wp158208"> </a><div class="pPreformattedRelative"><pre>&lt;servlet-name&gt;MyOwnDefaultServlet&lt;/servlet-name&gt;</pre></div><a name="wp158213"> </a><div class="pPreformattedRelative"><pre>&lt;url-pattern&gt;/myservlet/*(&lt;/url-pattern&gt;</pre></div><a name="wp158233"> </a><div class="pPreformattedRelative"><pre>&lt;/servlet-mapping&gt;</pre></div><li><a name="wp158116"> </a>If you still want the <code class="cCode">FileServlet</code> to serve files with other extensions:</li>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<li><a name="wp157945"> </a>Define a servlet and give it a <code class="cCode">&lt;servlet-name&gt;</code>, for example <code class="cCode">myFileServlet</code>.</li>
+<li><a name="wp157946"> </a>Define the <code class="cCode">&lt;servlet-class&gt;</code> as <code class="cCode">weblogic.servlet.FileServlet</code>.</li>
+<li><a name="wp157947"> </a>Using the <code class="cCode">&lt;servlet-mapping&gt;</code> element, map file extensions to the <code class="cCode">myFileServlet</code> (in addition to the mappings for your default servlet). For example, if you want the <code class="cCode">myFileServlet</code> to serve<code class="cCode">.gif</code> files, map <code class="cCode">*.gif</code> to the <code class="cCode">myFileServlet</code>.</li>
+</ol></div>
+</ol></div>
+<a name="wp158301"> </a><table class="Note">
+<tbody><tr>
+<td valign="top"><strong>Note:</strong></td>
+<td>The <code class="cCode">FileServlet</code> includes the <code class="cCode">SERVLET_PATH</code> when determining the source filename if the <code class="cCode">docHome</code> parameter (deprecated in this release) is not specified. As a result, it is possible to explicitly serve only files from specific directories by mapping the <code class="cCode">FileServlet</code> to <code class="cCode">/dir/*</code>, etc.</td>
+</tr>
+</tbody></table>
+
+<p>&nbsp;</p>
+<hr noshade="noshade">
+<h2 class="pHeading1"><a name="wp155662"> </a>
+Servlet Initialization Attributes<a name="init-param"></a>
+</h2><p class="pBody"><a name="wp100424"> </a>
+You define initialization attributes for servlets in the Web application deployment descriptor, web.xml, in the <code class="cCode">init-param</code> element of the <code class="cCode">servlet</code> element, using <code class="cCode">param-name</code> and <code class="cCode">param-value</code> tags. The <code class="cCode">web.xml</code> file is located in the <code class="cCode">WEB-INF</code> directory of your Web application. For example:
+</p>
+<div class="pCodeTitle"><a name="wp100426"> </a>
+Listing&nbsp;4-2	   Example of Configuring Servlet Initialization Attributes in web.xml
+</div> <a name="wp100427"> </a><div class="pPreformatted"><pre>&lt;servlet&gt;<br>&nbsp;&nbsp;&lt;servlet-name&gt;HelloWorld2&lt;/servlet-name&gt; <br>&nbsp;&nbsp;&lt;servlet-class&gt;examples.servlets.HelloWorld2&lt;/servlet-class&gt;</pre></div><a name="wp100428"> </a><div class="pPreformatted"><pre>&nbsp;&nbsp;&lt;init-param&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;param-name&gt;greeting&lt;/param-name&gt; <br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;param-value&gt;Welcome&lt;/param-value&gt; <br>&nbsp;&nbsp;&lt;/init-param&gt;</pre></div><a name="wp100429"> </a><div class="pPreformatted"><pre>&nbsp;&nbsp;&lt;init-param&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;param-name&gt;person&lt;/param-name&gt; <br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;param-value&gt;WebLogic Developer&lt;/param-value&gt; <br>&nbsp;&nbsp;&lt;/init-param&gt;<br>&lt;/servlet&gt;</pre></div><p>&nbsp;</p>
+<hr noshade="noshade">
+<h2 class="pHeading1"><a name="wp155945"> </a>
+Writing a Simple HTTP Servlet<a name="steps_to_write"></a>
+</h2><p class="pBody"><a name="wp155946"> </a>
+The section provides a procedure for writing a simple HTTP servlet, which prints out the message Hello World. A complete code example (the <code class="cCode">HelloWorldServlet</code>) illustrating these steps is included at the end of this section. Additional information about using various J2EE and Weblogic Server services such as JDBC, RMI, and JMS, in your servlet are discussed later in this document.
+</p>
+<div class="pSmartList1"><ol type="1" class="pSmartList1">
+<li><a name="wp155948"> </a>Import the appropriate package and classes, including the following:</li>
+<a name="wp155949"> </a><div class="pPreformattedRelative"><pre>import javax.servlet.*;<br>import javax.servlet.http.*;<br>import java.io.*;</pre></div><li><a name="wp155950"> </a>Extend <code class="cCode">javax.servlet.http.HttpServlet</code>. For example:</li>
+<a name="wp155951"> </a><div class="pPreformattedRelative"><pre>public class HelloWorldServlet extends HttpServlet{</pre></div><li><a name="wp155953"> </a>Implement a <code class="cCode">service()</code> method.</li>
+<p class="pBodyRelative"><a name="wp155954"> </a>
+The main function of a servlet is to accept an HTTP request from a Web browser, and return an HTTP response. This work is done by the <code class="cCode">service()</code> method of your servlet. Service methods include <span style="font-style: italic">response</span> objects used to create output and <span style="font-style: italic">request</span> objects used to receive data from the client.
+</p>
+<p class="pBodyRelative"><a name="wp155955"> </a>
+You may have seen other servlet examples implement the <code class="cCode">doPost()</code> and/or <code class="cCode">doGet()</code> methods. These methods reply only to POST or GET requests; if you want to handle all request types from a single method, your servlet can simply implement the <code class="cCode">service()</code> method. (However, if you choose to implement the <code class="cCode">service()</code> method, you cannot implement the <code class="cCode">doPost()</code> or <code class="cCode">doGet()</code> methods, unless you call <code class="cCode">super.service()</code> at the beginning of the <code class="cCode">service()</code> method.) The HTTP servlet specification describes other methods used to handle other request types, but all of these methods are collectively referred to as <em class="cEmphasis">service</em> methods. 
+</p>
+<p class="pBodyRelative"><a name="wp155956"> </a>
+All the service methods take the same parameter arguments. An <code class="cCode">HttpServletRequest</code> provides information about the request, and your servlet uses an <code class="cCode">HttpServletResponse</code> to reply to the HTTP client. The service method looks like the following:
+</p>
+<a name="wp155957"> </a><div class="pPreformattedRelative"><pre>public void service(HttpServletRequest req,<br>       HttpServletResponse res) throws IOException<br>{</pre></div><li><a name="wp155959"> </a>Set the content type, as follows:</li>
+<a name="wp155960"> </a><div class="pPreformattedRelative"><pre>res.setContentType("text/html");</pre></div><li><a name="wp155962"> </a>Get a reference to a <code class="cCode">java.io.PrintWriter</code> object to use for output, as follows:</li>
+<a name="wp155963"> </a><div class="pPreformattedRelative"><pre>PrintWriter out = res.getWriter();</pre></div><li><a name="wp155964"> </a>Create some HTML using the <code class="cCode">println()</code> method on the <code class="cCode">PrintWriter</code> object, as shown in the following example:</li>
+<a name="wp155965"> </a><div class="pPreformattedRelative"><pre>out.println("&lt;html&gt;&lt;head&gt;&lt;title&gt;Hello World!&lt;/title&gt;&lt;/head&gt;");<br>out.println("&lt;body&gt;&lt;h1&gt;Hello World!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;");<br>  }<br>}</pre></div><li><a name="wp155968"> </a>Compile the servlet<a name="compileservlet"></a>, as follows:</li>
+<div class="pSmartList2"><ol type="a" class="pSmartList2">
+<li><a name="wp155971"> </a>Set up a development environment shell with the correct classpath and path settings.</li>
+<li><a name="wp155972"> </a>From the directory containing the Java source code for your servlet, compile your servlet into the <code class="cCode">WEB-INF/classes</code> directory of the Web Application that contains your servlet. For example:</li>
+<a name="wp155973"> </a><div class="pPreformattedRelative"><pre>javac -d /myWebApplication/WEB-INF/classes myServlet.java</pre></div></ol></div>
+<li><a name="wp155976"> </a><a name="deployservlet"></a>Deploy the servlet as part of a Web Application hosted on WebLogic Server.</li>
+<li><a name="wp155981"> </a><a name="callservlet"></a>Call the servlet from a browser.</li>
+<p class="pBodyRelative"><a name="wp155982"> </a>
+The URL you use to call a servlet is determined by: (a) the name of the Web Application containing the servlet and (b) the name of the servlet as mapped in the deployment descriptor of the Web Application. Request parameters can also be included in the URL used to call a servlet. 
+</p>
+<p class="pBodyRelative"><a name="wp155983"> </a>
+Generally the URL for a servlet conforms to the following:
+</p>
+<a name="wp155984"> </a><div class="pPreformattedRelative"><pre>http://<span style="font-style: italic">host</span>:<span style="font-style: italic">port</span>/webApplicationName/<span style="font-style: italic">mappedServletName</span>?<span style="font-style: italic">parameter</span></pre></div><p class="pBodyRelative"><a name="wp155985"> </a>
+The components of the URL are defined as follows:
+</p>
+<div class="pSmartList2Bullet"><ul>
+<li><a name="wp155986"> </a><code class="cCode">host</code> is the name of the machine running WebLogic Server.</li>
+<li><a name="wp155987"> </a><code class="cCode">port</code> is the port at which the above machine is listening for HTTP requests.</li>
+<li><a name="wp155988"> </a><code class="cCode">webApplicationName</code> is the name of the Web Application containing the servlet.</li>
+<li><a name="wp155989"> </a><span style="font-style: italic">parameters</span> are one or more name-value pairs containing information sent from the browser that can be used in your servlet.</li>
+<p class="pBodyRelative"><a name="wp155990"> </a>
+For example, to use a Web browser to call the <code class="cCode">HelloWorldServlet </code>(the example featured in this document), which is deployed in the <code class="cCode">examplesWebApp</code> and served from a WebLogic Server running on your machine, enter the following URL: 
+</p>
+<a name="wp155991"> </a><div class="pPreformattedRelative"><pre>http://localhost:7001/examplesWebApp/HelloWorldServlet</pre></div><p class="pBodyRelative"><a name="wp155992"> </a>
+<hr noshade="noshade">
+<h2 class="pHeading1"><a name="wp156049"> </a>
+<a name="servletexample"></a>Complete HelloWorldServlet Example<a name="hello"></a>
+</h2><p class="pBody"><a name="wp156051"> </a>
+This section provides the complete Java source code for the example used in the preceding procedure. The example is a simple servlet that provides a response to an HTTP request. Later in this document, this example is expanded to illustrate how to use HTTP parameters, cookies, and session tracking. 
+</p>
+<div class="pCodeTitle"><a name="wp156052"> </a>
+Listing&nbsp;4-3	   HelloWorldServlet.java
+</div> <a name="wp156053"> </a><div class="pPreformatted"><pre>import javax.servlet.*;<br>import javax.servlet.http.*;<br>import java.io.*;</pre></div><a name="wp156054"> </a><div class="pPreformatted"><pre>public class HelloWorldServlet extends HttpServlet {<br>  public void service(HttpServletRequest req, <br>                      HttpServletResponse res)<br>       throws IOException<br>  {<br>    // Must set the content type first<br>    res.setContentType("text/html");<br>    // Now obtain a PrintWriter to insert HTML into<br>    PrintWriter out = res.getWriter();</pre></div><a name="wp156055"> </a><div class="pPreformatted"><pre>    out.println("&lt;html&gt;&lt;head&gt;&lt;title&gt;" +<br>                "Hello World!&lt;/title&gt;&lt;/head&gt;");<br>    out.println("&lt;body&gt;&lt;h1&gt;Hello World!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;");<br>  }<br>}</pre></div><p class="pBody"><a name="wp157129"> </a>

@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="gr__otndnld_oracle_co_jp"><head><meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+
+<!-- Run date = January 3, 2006 19:54:58 -->
+<meta name="Generator" content=" Oracle DARB XHTML converter - Version 4.1.3 Build 116">
+
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title> Understanding and Using Servlet Filters</title>
+<link rel="stylesheet" type="text/css" href="./Understanding and Using Servlet Filters_files/blafdoc.css" title="default">
+<link rel="stylesheet" type="text/css" href="./Understanding and Using Servlet Filters_files/darbbook.css" title="default">
+</head>
+<body>
+<h1><a name="JISVL300"></a>Understanding and Using Servlet Filters</h1>
+<p>When the servlet container calls a method in a servlet on behalf of the client, the HTTP request that the client sent is, by default, passed directly to the servlet. The response that the servlet generates is, by default, passed directly back to the client, with its content unmodified by the container. 
+</p>
+<ul>
+<li type="disc">
+<p><a href="#BCFDIHEJ">Overview of How Filters Work</a>
+</p>
+</li>
+<li type="disc">
+<p><a href="#BCFJCEFC">Standard Filter Interfaces</a>
+</p>
+</li>
+<li type="disc">
+<p><a href="#BCFGEJDJ">Implementing and Configuring Filters</a>
+</p>
+</li>
+<li type="disc">
+<p><a href="#BCFHFIEI">Simple Filter Example</a>
+</p>
+</li>
+</ul><a id="BCFDIHEJ" name="BCFDIHEJ"></a>
+<div class="sect1">
+
+<!-- infolevel=all infotype=General --><a id="sthref249" name="sthref249"></a>
+<h2>Overview of How Filters Work
+</h2>
+<p>This section provides an overview of the following topics:
+</p>
+<ul>
+<li type="disc">
+<p><a href="#BCFGAECI">How the Servlet Container Invokes Filters</a>
+</p>
+</li>
+<li type="disc">
+<p><a href="#BCFCIHAH">Typical Filter Actions</a>
+</p>
+</li>
+</ul><a id="BCFGAECI" name="BCFGAECI"></a>
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref250" name="sthref250"></a>
+<h3>How the Se<a id="sthref251" name="sthref251"></a>rvlet Container Invokes Filters
+</h3>
+<p><a href="#i1000029">Figure 5-1</a> shows, on the left, a scenario in which no filters are configured for the servlet being requested. On the right, several filters (1, 2, ..., N) have been configured. 
+</p>
+<div class="figure">
+<a id="i1000029" name="i1000029"></a><a id="sthref252" name="sthref252"></a>
+
+<p class="titleinfigure">Figure 5-1 Servlet Invocation with and without Filters</p>
+<img src="./Understanding and Using Servlet Filters_files/invfilt.gif" alt="Description of invfilt.gif follows" title="Description of invfilt.gif follows">
+<br><a id="sthref253" name="sthref253" href="img_text/invfilt.htm">Description of the illustration invfilt.gif</a>
+<br><br>
+</div><!-- class="figure" -->
+
+<p>Each filter implements the <code>javax.servlet.Filter</code> interface, which includes a <code>doFilter()</code> method that takes as input a request and response pair along with a filter chain, which is an instance of a class (provided by the servlet container) that implements the <code>javax.servlet.FilterChain</code> interface. The filter chain reflects the order of the filters. The servlet container, based on the configuration order in the <code>web.xml</code> file, constructs the chain of filters for any servlet or other resource that has filters mapped to it. For each filter in the chain, the filter chain object passed to it represents the remaining filters to be called, in order, followed by the target servlet.
+</p>
+<p>The <code>FilterChain</code> interface also specifies a <code>doFilter()</code> method, which takes a request and response pair as input and is used by each filter to invoke the next entity in the chain.
+</p>
+<p>Also see <a href="#BCFJCEFC">"Standard Filter Interfaces"</a>.
+</p>
+<p>If there are two filters, for example, the key steps of this mechanism would be as follows:
+</p>
+<ol type="1" start="1">
+<li>
+<p>The target servlet is requested. The container detects that there are two filters and creates the filter chain. 
+</p>
+</li>
+<li>
+<p>The first filter in the chain is invoked by its <code>doFilter()</code> method.
+</p>
+</li>
+<li>
+<p>The first filter completes any preprocessing, then calls the <code>doFilter()</code> method of the filter chain. This results in the second filter being invoked by its <code>doFilter()</code> method.
+</p>
+</li>
+<li>
+<p>The second filter completes any preprocessing, then calls the <code>doFilter()</code> method of the filter chain. This results in the target servlet being invoked by its <code>service()</code> method. 
+</p>
+</li>
+<li>
+<p>When the target servlet is finished, the chain <code>doFilter()</code> call in the second filter returns, and the second filter can do any postprocessing.
+</p>
+</li>
+<li>
+<p>When the second filter is finished, the chain <code>doFilter()</code> call in the first filter returns, and the first filter can do any postprocessing.
+</p>
+</li>
+<li>
+<p>When the first filter is finished, execution is complete.
+</p>
+</li>
+</ol>
+<p>None of the filters are aware of their order. Ordering is handled entirely through the filter chain, according to the order in which filters are configured in <code>web.xml</code>.
+</p>
+</div><!-- class="sect2" -->
+<a id="BCFCIHAH" name="BCFCIHAH"></a>
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref254" name="sthref254"></a>
+<h3>Typi<a id="sthref255" name="sthref255"></a>cal Filter Actions
+</h3>
+<p>The following are among the possible actions of the <code>doFilter()</code> method of a filter:
+</p>
+<ul>
+<li type="disc">
+<p>Create a wrapper for the request object to allow input filtering. Process the content or headers of the request wrapper as desired.
+</p>
+</li>
+<li type="disc">
+<p>Create a wrapper for the response object to allow output filtering. Process the content or headers of the response wrapper as desired.
+</p>
+</li>
+<li type="disc">
+<p>Pass the request and response pair (or wrappers) to the next entity in the chain, using the chain <code>doFilter()</code> method. Alternatively, to block request processing, do <span class="italic">not</span> call the chain <code>doFilter()</code> method.
+</p>
+</li>
+</ul>
+<p>Any processing you want to occur before the target resource is invoked must be prior to the chain <code>doFilter()</code> call. Any processing you want to occur after the completion of the target resource must be after the chain <code>doFilter()</code> call. This can include directly setting headers on the response.
+</p>
+<p>Note that if you want to preprocess the request object or postprocess the response object, you cannot directly manipulate the original request or response object. You must use wrappers. When postprocessing a response, for example, the target servlet has already completed and the response could already be committed by the time a filter would have a chance to do anything with the response. You must pass a response wrapper instead of the original response in the chain <code>doFilter()</code> call. See <a href="#BCFIAAAH">"Using a Filter to Wrap and Alter the Request or Response"</a>.
+</p>
+</div><!-- class="sect2" -->
+
+</div><!-- class="sect1" -->
+<a id="BCFJCEFC" name="BCFJCEFC"></a>
+<div class="sect1">
+
+<!-- infolevel=all infotype=General --><a id="sthref256" name="sthref256"></a>
+<h2>Stand<a id="sthref257" name="sthref257"></a>ard Filter Interfaces
+</h2>
+<p>A servlet filter implements the <code>javax.servlet.Filter</code> interface. The main method of this interface, <code>doFilter()</code>, takes a <code>javax.servlet.FilterChain</code> instance, created by the servlet container to represent the entire chain of filters, as input. The initialization method of the <code>Filter</code> interface, <code>init()</code>, takes a filter configuration object, which is an instance of <code>javax.servlet.FilterConfig</code>, as input. This section briefly describes the methods specified in these interfaces.
+</p>
+<p>For additional information about the interfaces and methods discussed here, refer to the Sun Microsystems Javadoc for the <code>javax.servlet</code> package, at:
+</p>
+<pre xml:space="preserve" class="oac_no_warn"><code><a href="http://java.sun.com/j2ee/1.4/docs/api/index.html">http://java.sun.com/j2ee/1.4/docs/api/index.html</a></code>
+</pre><a id="BCFBHGBG" name="BCFBHGBG"></a>
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref258" name="sthref258"></a>
+<h3>Methods of the Filt<a id="sthref259" name="sthref259"></a>er Interface
+</h3>
+<p>The <code>Filter</code> interface specifies the following methods to implement in your filters:
+</p>
+<ul>
+<li type="disc">
+<p><code>void init(FilterConfig filterConfig)</code>
+</p>
+<p>The servlet container calls <code>init()</code> as a filter is first instantiated and placed into service. This method takes a <code>javax.servlet.FilterConfig</code> instance as input, which the servlet container uses to pass information to the filter during the initialization. Include any special initialization requirements in your implementation. Also see <a href="#BCFCDAAA">"Methods of the FilterConfig Interface"</a>.
+</p>
+</li>
+<li type="disc">
+<p><code>void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)</code>
+</p>
+<p>This is where your filter processing occurs. Each time a target resource (such as a servlet or JSP page) is requested, where the target resource is mapped to a chain of one or more filters, the servlet container calls the <code>doFilter()</code> method of each filter in the chain, in order according to <code>web.xml</code> filter configurations. (See <a href="#BCFHEFFD">"Construction of the Filter Chain"</a>.) Within the <code>doFilter()</code> processing of a filter, invoke the <code>doFilter()</code> method on the filter chain object that is passed in to the <code>doFilter()</code> method of the filter. (An exception to this is if you want to block request processing.) This is what leads to invocation of the next entity in the chain (either the next filter, or the target servlet if this is the last filter in the chain) after a filter has completed.
+</p>
+</li>
+<li type="disc">
+<p><code>destroy()</code>: The servlet container calls <code>destroy()</code> after all execution of the filter has completed (all threads of the <code>doFilter()</code> method have completed, or a timeout has occurred) and the filter is being taken out of service. Include any special cleanup requirements in your implementation.
+</p>
+</li>
+</ul>
+</div><!-- class="sect2" -->
+
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref260" name="sthref260"></a>
+<h3>Method of the Filter<a id="sthref261" name="sthref261"></a>Chain Interface
+</h3>
+<p>The <code>FilterChain</code> interface specifies one method:
+</p>
+<ul>
+<li type="disc">
+<p><code>void doFilter(ServletRequest request, ServletResponse response)</code>
+</p>
+<p>Invoking this method, which you do from the <code>doFilter()</code> method of a filter, causes the next entity in the chain to be invoked&#8212;either the next filter, or the target resource (such as a servlet or JSP page) if this method is called from the last filter in the chain.
+</p>
+</li>
+</ul>
+</div><!-- class="sect2" -->
+<a id="BCFCDAAA" name="BCFCDAAA"></a>
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref262" name="sthref262"></a>
+<h3>Methods of the Filter<a id="sthref263" name="sthref263"></a>Config Interface
+</h3>
+<p>The <code>FilterConfig</code> interface specifies the following methods, available for your optional use:
+</p>
+<ul>
+<li type="disc">
+<p><code>java.util.Enumeration getInitParameterNames()</code>
+</p>
+<p>You can set initialization parameters for a filter through <code>&lt;init-param&gt;</code> elements under the <code>&lt;filter&gt;</code> element in the <code>web.xml</code> file. (See <a href="#BCFHDEGC">"Configure the Filter"</a>.) Then, in your filter, you can use the <code>getInitParameterNames()</code> method of the <code>FilterConfig</code> object, which is passed in through the <code>init()</code> method, to retrieve an <code>Enumeration</code> object of Java strings containing the names of the initialization parameters. (The <code>Enumeration</code> object is empty if there are no initialization parameters for the filter.)
+</p>
+</li>
+<li type="disc">
+<p><code>String getInitParameter(String paramname)</code>
+</p>
+<p>After retrieving initialization parameter names, use <code>getInitParameter()</code> to retrieve the value of a specified parameter.
+</p>
+</li>
+<li type="disc">
+<p><code>ServletContext getServletContext()</code>
+</p>
+<p>You can use this method to retrieve the servlet context associated with the requested servlet (which the filter is filtering).
+</p>
+</li>
+<li type="disc">
+<p><code>String getFilterName()</code>
+</p>
+<p>You can use this method to retrieve the name of the filter, according to the <code>&lt;filter-name&gt;</code> element in the <code>web.xml</code> file.
+</p>
+</li>
+</ul>
+</div><!-- class="sect2" -->
+
+</div><!-- class="sect1" -->
+<a id="BCFGEJDJ" name="BCFGEJDJ"></a>
+<div class="sect1">
+
+<!-- infolevel=all infotype=General --><a id="sthref264" name="sthref264"></a>
+<h2>Implementing and Configuring Filters
+</h2>
+<p>This section shows the basic steps of implementing and configuring a filter. Steps such as these are included in a complete sample in <a href="#BCFHFIEI">"Simple Filter Example"</a>.
+</p>
+<p>There is a subsection describing construction of the filter chain, based on your filter configuration order in <code>web.xml</code>.
+</p><a id="BCFGCDJC" name="BCFGCDJC"></a>
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref265" name="sthref265"></a>
+<h3>Imple<a id="sthref266" name="sthref266"></a>ment the Filter Code
+</h3>
+<p>This section lists steps in implementing code for a servlet filter. 
+</p>
+<ol type="1" start="1">
+<li>
+<p>Create a class that implements the <code>javax.servlet.Filter</code> interface. For example:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">public class TimerFilter implements javax.servlet.Filter { }
+
+</pre>
+</li>
+<li>
+<p>For initialization of your filter, implement the <code>init()</code> method, specified in the <code>Filter</code> interface. First, create or retrieve a <code>javax.servlet.FilterConfig</code> object, which <code>init()</code> takes as input. For example:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">private FilterConfig filterConfig;
+...
+public void init(final FilterConfig filterConfig)
+{
+    this.filterConfig = filterConfig;
+}
+
+</pre>
+<p>In case you want any special initialization processing, see <a href="#BCFCDAAA">"Methods of the FilterConfig Interface"</a>.
+</p>
+</li>
+<li>
+<p>For your filter processing, implement the <code>doFilter()</code> method, specified in the <code>Filter</code> interface. This method takes a request object, a response object, and a <code>javax.servlet.FilterChain</code> object created by the servlet container. Implement whatever processing you want, and (typically) call the <code>doFilter()</code> method of the filter chain object to invoke the next entity in the chain. For example:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">public void doFilter(ServletRequest request, ServletResponse response,
+       FilterChain chain) 
+       throws java.io.IOException, javax.servlet.ServletException
+{
+    long start = System.currentTimeMillis();
+    System.out.println("Milliseconds in: " + start);
+    chain.doFilter(request, response);
+    long end = System.currentTimeMillis();
+    System.out.println("Milliseconds out: " + end);
+}
+
+</pre>
+<p>The first <code>println()</code> call is executed before the rest of the chain is invoked; the second <code>println()</code> call is executed afterward, when <code>chain.doFilter()</code> returns.
+</p>
+</li>
+<li>
+<p>Implement the <code>destroy()</code> method, specified in the <code>Filter</code> interface, to clean up resources or do anything special before the filter is taken out of service. For example:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">public void destroy()
+{
+    filterConfig = null;
+}
+</pre>
+<div align="center">
+<div class="inftblNote">
+
+<br><table class="Note oac_no_warn" summary="This is a layout table to format a note" title="This is a layout table to format a note" dir="ltr" border="1" width="80%" frame="hsides" rules="groups" cellpadding="3" cellspacing="0">
+<tbody>
+<tr>
+<td align="left">
+<p class="notep1">Note:</p>There are additional considerations in implementing a filter to alter the HTTP request or response. See <a href="#BCFIAAAH">"Using a Filter to Wrap and Alter the Request or Response"</a>.
+</td>
+</tr>
+</tbody>
+</table><br>
+</div><!-- class="inftblNote -->
+
+</div>
+</li>
+</ol>
+</div><!-- class="sect2" -->
+<a id="BCFHDEGC" name="BCFHDEGC"></a>
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref267" name="sthref267"></a>
+<h3>Config<a id="sthref268" name="sthref268"></a>ure the Filter
+</h3>
+<p>This section lists the steps in configuring a servlet filter. Do the following in <code>web.xml</code> for each filter:
+</p>
+<ol type="1" start="1">
+<li>
+<p>Declare the filter through a <code>&lt;filter&gt;</code> element and its subelements, which maps the filter class (including package) to a filter name. For example:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">&lt;filter&gt;
+    &lt;filter-name&gt;timer&lt;/filter-name&gt;
+    &lt;filter-class&gt;filter.TimerFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
+
+</pre>
+<p>You can optionally specify initialization parameters here, similarly to how you would for a servlet:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">&lt;filter&gt;
+    &lt;filter-name&gt;timer&lt;/filter-name&gt;
+    &lt;filter-class&gt;filter.TimerFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;<span class="italic">name</span>&lt;/param-name&gt;
+        &lt;param-value&gt;<span class="italic">value</span>&lt;/param-value&gt;
+    &lt;init-param&gt;
+&lt;/filter&gt;
+
+</pre>
+</li>
+<li>
+<p>Using a <code>&lt;filter-mapping&gt;</code> element and its subelements, map the filter name to a servlet name or URL pattern to associate the filter with the corresponding resource (such as a servlet or JSP page) or resources. For example, to have the filter invoked whenever the servlet of name <code>myservlet</code> is invoked:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">&lt;filter-mapping&gt; 
+    &lt;filter-name&gt;timer&lt;/filter-name&gt;
+    &lt;servlet-name&gt;myservlet&lt;/servlet-name&gt; 
+&lt;/filter-mapping&gt; 
+
+</pre>
+<p>Or, to have the filter invoked whenever <code>sleepy.jsp</code> is requested, according to URL pattern:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">&lt;filter-mapping&gt; 
+    &lt;filter-name&gt;timer&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/sleepy.jsp&lt;/url-pattern&gt; 
+&lt;/filter-mapping&gt; 
+
+</pre>
+<p>Note that instead of specifying a particular resource in the <code>&lt;url-pattern&gt;</code> element, you can use wild card characters to match multiple resources, such as in the following example:
+</p>
+<pre xml:space="preserve" class="oac_no_warn">&lt;url-pattern&gt;/mypath/*&lt;/url-pattern&gt;
+
+</pre>
+</li>
+</ol>
+<p>The filter name can be arbitrary, but preferably is meaningful. It is simply used as the linkage in mapping a filter class to a servlet name or URL pattern. 
+</p>
+<p>If you configure multiple filters that apply to a resource, they will be entered in the servlet chain according to their declaration order in <code>web.xml</code>, and they will be invoked in that order when the target servlet is requested. See the next section, <a href="#BCFHEFFD">"Construction of the Filter Chain"</a>.
+</p>
+<div align="center">
+<div class="inftblNote">
+
+<br><table class="Note oac_no_warn" summary="This is a layout table to format a note" title="This is a layout table to format a note" dir="ltr" border="1" width="80%" frame="hsides" rules="groups" cellpadding="3" cellspacing="0">
+<tbody>
+<tr>
+<td align="left">
+<p class="notep1">Note:</p>There are additional steps to configure a filter for a forward or include target. See <a href="#BCFGCJID">"Filtering Forward or Include Targets"</a>.
+</td>
+</tr>
+</tbody>
+</table><br>
+</div><!-- class="inftblNote -->
+
+</div>
+</div><!-- class="sect2" -->
+<a id="BCFHEFFD" name="BCFHEFFD"></a>
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref269" name="sthref269"></a>
+<h3>Constru<a id="sthref270" name="sthref270"></a>ction of the Filter Chain
+</h3>
+<p>When you declare and map filters in <code>web.xml</code>, the servlet container determines which filters apply to each servlet or other resource (such as a JSP page or static page) in the Web application. Then, for each servlet or resource, the servlet container builds a chain of applicable filters, according to your <code>web.xml</code> configuration order, as follows:
+</p>
+<ol type="1" start="1">
+<li>
+<p>First, any filters that match a servlet or resource according to a <code>&lt;url-pattern&gt;</code> element are placed in the chain, in the order in which the filters are declared in <code>web.xml</code>. 
+</p>
+</li>
+<li>
+<p>Next, any filters that match a servlet or resource according to a <code>&lt;servlet-name&gt;</code> element are placed in the chain, with the first <code>&lt;servlet-name&gt;</code> match following the last <code>&lt;url-pattern&gt;</code> match.
+</p>
+</li>
+<li>
+<p>Finally, the target servlet or other resource is placed at the end of the chain, following the last filter with a <code>&lt;servlet-name&gt;</code> match.
+</p>
+</li>
+</ol>
+</div><!-- class="sect2" -->
+
+</div><!-- class="sect1" -->
+<a id="BCFHFIEI" name="BCFHFIEI"></a>
+<div class="sect1">
+
+<!-- infolevel=all infotype=General --><a id="sthref271" name="sthref271"></a>
+<h2>Simple Fil<a id="sthref272" name="sthref272"></a><a id="sthref273" name="sthref273"></a>ter Example
+</h2>
+<p>This example shows a filter that is invoked when a JSP page is requested. The JSP page writes a line to the browser. The filter writes two lines to the OC4J console&#8212;one line before the JSP page runs, and one after.
+</p><a id="BCFEECGH" name="BCFEECGH"></a>
+<div class="sect2">
+
+<!-- infolevel=all infotype=General --><a id="sthref274" name="sthref274"></a>
+<h3>Write the Simple Filter Code
+</h3>
+<p>Here is the code for the simple filter, <code>TimerFilter</code>. The <code>doFilter()</code> method writes two lines to the OC4J console, one before the target JSP is executed and one after.
+</p>
+<pre xml:space="preserve" class="oac_no_warn">package filter;
+ 
+import javax.servlet.*;
+ 
+public class TimerFilter implements javax.servlet.Filter
+{
+    private FilterConfig filterConfig;
+ 
+    public void doFilter(ServletRequest request, ServletResponse response,
+           FilterChain chain) 
+           throws java.io.IOException, javax.servlet.ServletException
+    {
+        long start = System.currentTimeMillis();
+        System.out.println("Milliseconds in: " + start);
+        chain.doFilter(request, response);
+        long end = System.currentTimeMillis();
+        System.out.println("Milliseconds out: " + end);
+    }
+ 
+    public void init(final FilterConfig filterConfig)
+    {
+        this.filterConfig = filterConfig;
+    }
+ 
+    public void destroy()
+    {
+        filterConfig = null;
+    }
+}
+</pre>
+</div><!-- class="sect2" -->
+</body></html>

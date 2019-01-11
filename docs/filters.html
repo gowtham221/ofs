@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<!-- LOCALIZATION RELATED INFORMATION -->
+<meta name="LOC_PROJ_ID" content="WLPF8.1" />
+<meta name="LOC_OWNER" content="BEAJ" />
+<meta name="LOC_STATUS" content="READY!" />
+<meta name="LOC_COMMENT" content="LOC_COMMENT" />
+<meta name="LOC_US_REV" content="101" />
+<meta name="LOC_US_CHANGE" content="747747" />
+<meta name="LOC_US_SRCFILE" content="//depot/docs/olympic/fm/webapp/filters.fm" />
+<!-- LOCALIZATION RELATED INFORMATION -->
+	
+	<title>Filters
+
+</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="Content-Language" content="en-us" />
+	<meta name="description" content="BEA WebLogic Server Documentation" />
+	<meta name="keywords" content="WebLogic Server" />
+	<style type="text/css" media="all">@import "../styles.css";</style>
+	<style type="text/css" media="all">@import "../edocs.css";</style>
+
+<!-- <script language="Javascript" src="floatwin.js" type="text/javascript"></script> -->
+<!-- <!-- This script opens a new small floating window and puts TOC<i>&lt;name&gt;</i>.html and IX<i>&lt;name&gt;</i>.html files in it and sets a generic popup window code to enable the display of some viewlets in the WebLogic Platform Tour. -->
+
+<!-- <script language="JavaScript1.1" src="../search.js" type="text/javascript"></script> -->
+<!-- <!-- This script is not for online documents. It is only used by the QuestAgent Java Applet for CD search indexes. 
+
+<!-- <script language="Javascript" src="../../../../../global_resources/js/banner.js" type="text/javascript"></script> -->
+<!-- <!-- This script outputs the google search form. -->
+
+<!-- <script language="Javascript1.1" src="../copyright.js" type="text/javascript"></script> -->
+<!-- <!-- This script outputs the correct copyright date and link to copyright page.-->
+</script></head>
+<body>
+<a name="178898"></a>
+<div class="hide"><a href="#wrap" title="Skip navigation" accesskey="2">Skip navigation</a>.</div>
+<script language="Javascript1.1" type="text/javascript">
+Banner();
+</script>
+<noscript>This script outputs the google search URL required for search on edocs documentation.</noscript>
+
+
+
+
+<!-- page contents -->
+
+<a name="wrap"></a>
+<div id="wrap">
+<!-- page title -->
+<p class="booktitle">Filters</p>
+<!-- page title end -->
+
+<!-- CONTENT -->
+<h1 class="chaphead"><a name="178898"></a>Filters</h1>
+
+
+
+<p><a name="172679"></a>The following sections provide information about using filters in a Web application:</p>
+
+<ul type="square"><li type="square"><a name="175290"></a><a href="filters.html#172610">Overview of Filters</a></li>
+<li type="square"><a name="178137"></a><a href="filters.html#178183">Writing a Filter Class</a></li>
+<li type="square"><a name="175294"></a><a href="filters.html#172613">Configuring Filters</a></li>
+<li type="square"><a name="174981"></a><a href="filters.html#172615">Filtering the Servlet Response Object</a></li>
+<li type="square"><a name="175435"></a><a href="filters.html#175311">Additional Resources</a></li>
+</ul><p>&nbsp;</p>
+<hr noshade="noshade" />
+<h1 class="head1"><a name="172610"></a>Overview of Filters</h1>
+
+<p><a name="172750"></a>A filter is a Java class that is invoked in response to a request for a resource in a Web application. Resources include Java Servlets, JavaServer pages (JSP), and static resources such as HTML pages or images. A filter intercepts the request and can examine and m	odify the response and request objects or execute other tasks.</p>
+
+
+<p><a name="174826"></a>Filters are an advanced J2EE feature primarily intended for situations where the developer cannot change the coding of an existing resource and needs to modify the behavior of that resource. Generally, it is more efficient to modify the code to change the behavior of the resource itself rather than using filters to modify the resource. In some situations, using filters can add unnecessary complexity to an application and degrade performance.</p>
+
+<h2 class="head2"><a name="172908"></a>How Filters Work</h2>
+<p><a name="172951"></a>You define filters in the context of a Web application. A filter intercepts a request for a specific named resource or a group of resources (based on a URL pattern) and executes the code in the filter. For each resource or group of resources, you can specify a single filter or multiple filters that are invoked in a specific order, called a <em>chain</em>. </p>
+
+
+<p><a name="172928"></a>When a filter intercepts a request, it has access to the <code style="font-family: courier">javax.servlet.ServletRequest</code> and <code style="font-family: courier">javax.servlet.ServletResponse</code> objects that provide access to the HTTP request and response, and a <code style="font-family: courier">javax.servlet.FilterChain</code> object. The <code style="font-family: courier">FilterChain</code> object contains a list of filters that can be invoked sequentially. When a filter has completed its work, the filter can either call the next filter in the chain, block the request, throw an exception, or invoke the originally requested resource.</p>
+
+
+<p><a name="172938"></a>After the original resource is invoked, control is passed back to the filter at the bottom of the list in the chain. This filter can then examine and modify the response headers and data, block the request, throw an exception, or invoke the next filter up from the bottom of the chain. This process continues in reverse order up through the chain of filters.</p>
+
+<p><strong><a name="180396"></a>Note:	</strong> The filter can modify the headers only if the response has not already been committed.</p>
+<h2 class="head2"><a name="172939"></a>Uses for Filters</h2>
+<p><a name="172868"></a>Filters can be useful for the following functions:</p>
+
+<ul type="square"><li type="square"><a name="172869"></a>Implementing a logging function</li>
+<li type="square"><a name="172870"></a>Implementing user-written security functionality</li>
+<li type="square"><a name="172877"></a>Debugging</li>
+<li type="square"><a name="172879"></a>Encryption</li>
+<li type="square"><a name="172880"></a>Data compression</li>
+<li type="square"><a name="172878"></a>Modifying the response sent to the client. (However, post processing the response can degrade the performance of your application.)</li>
+</ul><p>&nbsp;</p>
+<hr noshade="noshade" />
+<h1 class="head1"><a name="178183"></a>Writing a Filter Class</h1>
+
+<p><a name="178186"></a>To write a filter class, implement the <a href=http://java.sun.com/j2ee/tutorial/api/javax/servlet/Filter.html>javax.servlet.Filter</a> interface. You must implement the following methods of this interface:</p>
+
+<ul type="square"><li type="square"><a name="180417"></a><code style="font-family: courier">init()</code></li>
+<li type="square"><a name="180439"></a><code style="font-family: courier">destroy()</code></li>
+<li type="square"><a name="180414"></a><code style="font-family: courier">doFilter()</code></li>
+</ul>
+<p><a name="178189"></a>You use the <code style="font-family: courier">doFilter()</code> method to examine and modify the request and response objects, perform other tasks such as logging, invoke the next filter in the chain, or block further processing.</p>
+
+
+<p><a name="178200"></a>Several other methods are available on the <code style="font-family: courier">FilterConfig</code> object for accessing the name of the filter, the <code style="font-family: courier">ServletContext</code> and the filter's initialization attributes. For more information see the <a href=http://java.sun.com/j2ee/tutorial/api/index.html>J2EE Javadocs</a> from Sun Microsystems for <code style="font-family: courier">javax.servlet.FilterConfig</code>.To access the next item in the chain (either another filter or the original resource, if that is the next item in the chain), call the <code style="font-family: courier">FilterChain.doFilter()</code> method.	</p>
+
+<p>&nbsp;</p>
+<hr noshade="noshade" />
+<h1 class="head1"><a name="172613"></a>Configuring Filters</h1>
+
+<p><a name="175469"></a>You configure filters as part of a Web application, using the application's <code style="font-family: courier">web.xml</code> deployment descriptor. In the deployment descriptor, you specify the filter and then map the filter to a URL pattern or to a specific servlet in the Web application. You can specify any number of filters.</p>
+
+<h2 class="head2"><a name="175471"></a>Configuring a Filter</h2>
+<p><a name="173031"></a>To configure a filter:</p>
+
+<ol>
+<div class="lists">
+<li value="1"><a name="175977"></a>Open the <code style="font-family: courier">web.xml</code>. The <code style="font-family: courier">web.xml</code> file is located in the <code style="font-family: courier">WEB-INF</code> directory of your Web application. </li>
+</div><div class="lists">
+<li value="2"><a name="173054"></a>	Add a filter declaration. The <code style="font-family: courier">&lt;filter&gt;</code> element declares a filter, defines a name for the filter, and specifies the Java class that executes the filter. The <code style="font-family: courier">&lt;filter&gt;</code> element must directly follow the <code style="font-family: courier">&lt;context-param&gt;</code> element and directly precede the <code style="font-family: courier">&lt;servlet&gt;</code> elements. For example:</li>
+</div><blockquote><pre><CODE style="font-family: courier; font-size: 10pt"><a name="173055"></a>&lt;context-param&gt;Param&lt;/context-param&gt;</CODE></pre></blockquote><blockquote><pre><CODE style="font-family: courier; font-size: 10pt"><a name="178306"></a>&lt;filter&gt;<br>&nbsp;&nbsp;&lt;icon&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;small-icon&gt;MySmallIcon.gif&lt;/small-icon&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;large-icon&gt;MyLargeIcon.gif&lt;/large-icon&gt;<br>&nbsp;&nbsp;&lt;/icon&gt;<br>&nbsp;&nbsp;&lt;filter-name&gt;myFilter&lt;/filter-name&gt;<br>&nbsp;&nbsp;&lt;display-name&gt;My Filter&lt;/display-name&gt;<br>&nbsp;&nbsp;&lt;description&gt;This is my filter&lt;/description&gt;<br>&nbsp;&nbsp;&lt;filter-class&gt;examples.myFilterClass&lt;/filter-class&gt;<br>&lt;/filter&gt;</CODE></pre></blockquote><blockquote><pre><CODE style="font-family: courier; font-size: 10pt"><a name="178319"></a></CODE></pre></blockquote><blockquote><pre><CODE style="font-family: courier; font-size: 10pt"><a name="178328"></a>&lt;servlet&gt;Servlet&lt;/servlet&gt;</CODE></pre></blockquote><dl><dt><p class="listpara"><a name="174660"></a>The <code style="font-family: courier">icon</code>, <code style="font-family: courier">description</code>, and <code style="font-family: courier">display-name</code> elements are optional.</p>
+</dl><div class="lists">
+<li value="3"><a name="173061"></a>Specify one or more initialization attributes inside a <code style="font-family: courier">&lt;filter&gt;</code> element. For example:</li>
+</div><blockquote><pre><CODE style="font-family: courier; font-size: 10pt"><a name="175714"></a>&lt;filter&gt;<br>&nbsp;&nbsp;&lt;icon&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;small-icon&gt;MySmallIcon.gif&lt;/small-icon&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;large-icon&gt;MyLargeIcon.gif&lt;/large-icon&gt;<br>&nbsp;&nbsp;&lt;/icon&gt;<br>&nbsp;&nbsp;&lt;filter-name&gt;myFilter&lt;/filter-name&gt;<br>&nbsp;&nbsp;&lt;display-name&gt;My Filter&lt;/display-name&gt;<br>&nbsp;&nbsp;&lt;description&gt;This is my filter&lt;/description&gt;<br>&nbsp;&nbsp;&lt;filter-class&gt;examples.myFilterClass&lt;/filter-class&gt;<br>&nbsp;&nbsp;&lt;init-param&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;param-name&gt;myInitParam&lt;/param-name&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;param-value&gt;myInitParamValue&lt;/param-value&gt;<br>&nbsp;&nbsp;&lt;/init-param&gt;<br>&lt;/filter&gt;</CODE></pre></blockquote><dl><dt><p class="listpara"><a name="175716"></a>Your <code style="font-family: courier">Filter</code> class can read the initialization attributes using the <code style="font-family: courier">FilterConfig.getInitParameter()</code> or <code style="font-family: courier">FilterConfig.getInitParameters()</code> methods.</p>
+</dl><div class="lists">
+<li value="4"><a name="174661"></a>Add filter mappings. The <code style="font-family: courier">&lt;filter-mapping&gt;</code> element specifies which filter to execute based on a URL pattern or servlet name. The <code style="font-family: courier">&lt;filter-mapping&gt;</code> element must immediately follow the <code style="font-family: courier">&lt;filter&gt;</code> element(s).</li>
+</div><ul type="disc"><li type="disc"><a name="173065"></a>To create a filter mapping using a URL pattern, specify the name of the filter and a URL pattern. For example, the following <code style="font-family: courier">filter-mapping</code> maps <code style="font-family: courier">myFilter</code> to requests that contain <code style="font-family: courier">/myPattern/</code>.</li>
+<blockquote><pre><CODE style="font-family: courier; font-size: 10pt"><a name="173076"></a>&lt;filter-mapping&gt;<br>&nbsp;&nbsp;&lt;filter-name&gt;myFilter&lt;/filter-name&gt;<br>&nbsp;&nbsp;&lt;url-pattern&gt;/myPattern/*&lt;/url-pattern&gt;<br>&lt;/filter-mapping&gt;</CODE></pre></blockquote><li type="disc"><a name="173138"></a>To create a filter mapping for a specific servlet, map the filter to the name of a servlet that is registered in the Web application. For example, the following code maps the <code style="font-family: courier">myFilter</code> filter to a servlet called <code style="font-family: courier">myServlet</code>:</li>
+<blockquote><pre><CODE style="font-family: courier; font-size: 10pt"><a name="173233"></a>&lt;filter-mapping&gt;<br>&nbsp;&nbsp;&lt;filter-name&gt;myFilter&lt;/filter-name&gt;<br>&nbsp;&nbsp;&lt;servlet-hame&gt;myServlet&lt;/servlet-name&gt;<br>&lt;/filter-mapping&gt;</CODE></pre></blockquote></ul><div class="lists">
+<li value="5"><a name="173064"></a>To create a chain of filters, specify multiple filter mappings. For more information, see <a href="filters.html#173273">Configuring a Chain of Filters</a>.</li>
+</div></ol>
+<h2 class="head2"><a name="173273"></a>Configuring a Chain of Filters</h2>
+<p><a name="173768"></a>The Server creates a <em>chain</em> of filters by creating a list of all the filter mappings that match an incoming HTTP request. The ordering of the list is determined by the following sequence:</p>
+
+<ol>
+<div class="lists">
+<li value="1"><a name="173770"></a>Filters where the <code style="font-family: courier">filter-mapping</code> element contains a <code style="font-family: courier">url-pattern</code> that matches the request are added to the chain in the order they appear in the <code style="font-family: courier">web.xml</code> deployment descriptor. </li>
+</div><div class="lists">
+<li value="2"><a name="173790"></a>Filters where the <code style="font-family: courier">filter-mapping</code> element contains a <code style="font-family: courier">servlet-name</code> that matches the request are added to the chain <em>after </em>the filters that match a URL pattern.</li>
+</div><div class="lists">
+<li value="3"><a name="173807"></a>The last item in the chain is always the originally requested resource.</li>
+</div></ol>
+
+<p><a name="173319"></a>In your filter class, use the <code style="font-family: courier">FilterChain.doFilter()</code> method to invoke the next item in the chain.</p>
+
+<p>&nbsp;</p>
+<hr noshade="noshade" />
+<h1 class="head1"><a name="172615"></a>Filtering the Servlet Response Object</h1>
+
+<p><a name="174767"></a>You can use filters to post-process the output of a servlet by appending data to the output generated by the servlet. However, in order to capture the output of the servlet, you must create a wrapper for the response. (You cannot use the original response object, because the output buffer of the servlet is automatically flushed and sent to the client when the servlet completes executing and <em>before</em> control is returned to the last filter in the chain.)</p>
+
+<!-- BACK TO TOP -->
+<p>&nbsp;</p>
+<table cellspacing="5" cellpadding="5" border="0">
+	<tr>
+		<td align="left" valign="middle" width="125"><a href="#wrap"><img border="0" src="../images/_.gif" width="1" height="1" alt="Skip navigation bar" /></a>
+			&nbsp;<a href="filters.html"><img src="../images/backtop.gif" width="90" height="25" alt="Back to Top" title="Back to Top" border="0" /></a>
+		</td>
+	</tr>
+</table>
+
+
+<br />
+
+<!-- BACK TO TOP end -->
+
+</body>
+
+</html>
