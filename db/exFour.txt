@@ -1,0 +1,16 @@
+SELECT *
+  FROM (((((university AS u
+      CROSS JOIN college AS c
+      ON u.univ_code=c.univ_code)
+      CROSS JOIN employee AS e
+      ON c.id=e.college_id)
+      
+      
+      CROSS JOIN department AS d 
+      ON u.univ_code=d.univ_code)
+      
+      CROSS JOIN designation AS ds
+      ON e.desig_id=ds.id)
+      CROSS JOIN college_department AS cd
+      ON cd.cdept_id=e.cdept_id)
+      WHERE e.desig_id IN (2) AND e.cdept_id IN (201,205,211,212,215,216) AND dept_name IN ('INFORMATION TECHNOLOGY','Computer Science Engineering');

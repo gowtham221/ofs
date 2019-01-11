@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+
+    <servlet>
+      <servlet-name>DemoServlet</servlet-name>
+      <servlet-class>com.objectfrontier.training.java.webservices.servlet.DemoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DemoServlet</servlet-name>
+        <url-pattern>/demo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>PersonServlet</servlet-name>
+      <servlet-class>com.objectfrontier.training.java.webservices.servlet.PersonServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PersonServlet</servlet-name>
+        <url-pattern>/personccc/read</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PersonServlet</servlet-name>
+        <url-pattern>/personccc/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PersonServlet</servlet-name>
+        <url-pattern>/personccc/update</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PersonServlet</servlet-name>
+        <url-pattern>/personccc/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PersonServlet</servlet-name>
+        <url-pattern>/personccc/readAll</url-pattern>
+    </servlet-mapping>
+
+</web-app>

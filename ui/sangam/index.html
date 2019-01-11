@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="script/script.js"></script>
+    <title>Login Page</title>
+  </head>
+  <body onload="timer()">
+    <form>
+      <div class="box">
+        <h1>OFS Sign In</h1>
+        <h2 id="count">0</h2>
+        <input id=username
+               class="input"
+               type="text"
+               placeholder="Username" />
+        <input id=password
+               class="input"
+               type="password"
+               placeholder="Password" />
+        <div class="button" onclick="validateSignIn()">Sign In</div>
+      </div>
+    </form>
+    <span>Forgot your password?</span> <span><a href="html/reset.html">Click Here!</a></span>
+  </body>
+</html>

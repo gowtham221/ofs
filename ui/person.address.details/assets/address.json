@@ -1,0 +1,24 @@
+[{
+    "id" : 11,
+    "city" : "Pondy",
+    "street" : "north street",
+    "postal_code" : 605001
+},
+{
+  "id" : 12,
+  "city" : "Pondy",
+  "street" : "south street",
+  "postal_code" : 605002
+},
+{
+  "id" : 13,
+  "city" : "Pondy",
+  "street" : "east street",
+  "postal_code" : 605003
+},
+{
+  "id" : 14,
+  "city" : "Pondy",
+  "street" : "west street",
+  "postal_code" : 605004
+}]

@@ -1,0 +1,28 @@
+[{
+  "id" : 21,
+  "firstName" : "gowtham",
+  "lastName" : "j",
+  "email" : "gowtham@gmail",
+  "dob" : "06-06-1996",
+},
+{
+  "id" : 22,
+  "firstName" : "dipak",
+  "lastName" : "yadav",
+  "email" : "dipak@gmail",
+  "dob" : "06-08-1996",
+},
+{
+  "id" : 23,
+  "firstName" : "manik",
+  "lastName" : "v",
+  "email" : "manik@gmail",
+  "dob" : "06-09-1996",
+},
+{
+  "id" : 24,
+  "firstName" : "sabari",
+  "lastName" : "k",
+  "email" : "sabari@gmail",
+  "dob" : "06-10-1996",
+}]

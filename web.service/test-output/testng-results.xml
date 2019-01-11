@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="780" started-at="2018-11-24T12:10:32Z" finished-at="2018-11-24T12:10:33Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="780" started-at="2018-11-24T12:10:32Z" finished-at="2018-11-24T12:10:33Z">
+      <class name="com.objectfrontier.training.java.webservices.test.PersonServletTest">
+        <test-method status="PASS" signature="init()[pri:0, instance:com.objectfrontier.training.java.webservices.test.PersonServletTest@7946e1f4]" name="init" is-config="true" duration-ms="16" started-at="2018-11-24T17:40:32Z" finished-at="2018-11-24T17:40:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="testDelete_negative(com.objectfrontier.training.java.webservices.pojo.Person, java.util.List)[pri:0, instance:com.objectfrontier.training.java.webservices.test.PersonServletTest@7946e1f4]" name="testDelete_negative" duration-ms="749" started-at="2018-11-24T17:40:32Z" data-provider="testDeleteNegative" finished-at="2018-11-24T17:40:33Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Person [firstName=null, lastName=null, email=null, birthDate=null, address=null]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[ID_NOT_FOUND]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDelete_negative -->
+      </class> <!-- com.objectfrontier.training.java.webservices.test.PersonServletTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
